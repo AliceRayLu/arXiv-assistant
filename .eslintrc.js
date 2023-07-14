@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
+    "vue/setup-compiler-macros": true, // 新增的配置
   },
   extends: [
     "plugin:vue/vue3-essential",
