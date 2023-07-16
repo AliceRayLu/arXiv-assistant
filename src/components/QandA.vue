@@ -1,13 +1,29 @@
 <template>
   <el-row class="role">
     <el-avatar :icon="UserFilled" size="large" />
-    <el-card style="margin-left: 0.5vw">
+    <el-card
+      class="card"
+      shadow="never"
+      :body-style="{
+        backgroundColor: 'rgba(0,0,0,.05)',
+        borderRadius: '1vh',
+        border: '0px solid ',
+      }"
+    >
       <div>{{ props.question }}</div>
     </el-card>
   </el-row>
   <el-row class="role">
     <el-avatar size="large">Agent</el-avatar>
-    <el-card style="margin-left: 0.5vw">
+    <el-card
+      class="card"
+      shadow="never"
+      :body-style="{
+        backgroundColor: 'rgba(98,106,239,.1)',
+        borderRadius: '1vh',
+        border: '0px',
+      }"
+    >
       <div>{{ answer }}</div>
     </el-card>
   </el-row>
@@ -21,9 +37,16 @@ const props = defineProps({
 });
 </script>
 
-<style>
+<style scoped>
 .role {
   margin-top: 2vh;
   margin-bottom: 2vh;
+}
+.card {
+  margin-left: 0.5vw;
+  /*background-color: ;*/
+}
+/deep/.el-card {
+  border: none;
 }
 </style>

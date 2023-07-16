@@ -42,11 +42,12 @@
     <el-main style="overflow: hidden">
       <div style="display: flex; width: 100%">
         <el-input
-          placeholder="Type in sentences to search for papers."
+          placeholder="Press enter to search."
           v-model="userInput"
           :prefix-icon="Search"
           style="display: inline-flex"
           clearable
+          v-on:keyup.enter="handleSend"
           ref="inputEl"
         ></el-input>
         <el-button
