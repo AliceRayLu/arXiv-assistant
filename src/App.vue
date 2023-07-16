@@ -40,13 +40,14 @@
       </div>
     </el-aside>
     <el-main style="overflow: hidden">
-      <div style="display: flex; width: 100%" ref="inputEl">
+      <div style="display: flex; width: 100%">
         <el-input
           placeholder="Type in sentences to search for papers."
           v-model="userInput"
           :prefix-icon="Search"
           style="display: inline-flex"
           clearable
+          ref="inputEl"
         ></el-input>
         <el-button
           color="#626aef"
@@ -94,6 +95,7 @@ const handleSend = () => {
   answers.splice(0, 0, answer);
   localStorage.setItem("questions", JSON.stringify(questions));
   localStorage.setItem("answers", JSON.stringify(answers));
+  inputEl.value.clear();
 };
 
 const getAnswer = (ques: string) => {
