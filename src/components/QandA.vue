@@ -6,7 +6,7 @@
     </el-card>
   </el-row>
   <el-row v-if="props.isSend" style="margin-top: 2vh">
-    <el-avatar size="large">Vicuna</el-avatar>
+    <el-avatar size="large">Agent</el-avatar>
     <el-card style="margin-left: 0.5vw">
       <div>hahahah</div>
     </el-card>
