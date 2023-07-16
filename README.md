@@ -1,5 +1,6 @@
 # arXiv-assistant
 use LangChain to build LLM-based arXiv, easier search, easier use
+> repository location: https://github.com/AliceRayLu/arXiv-assistant
 
 ## How to Use
 Run the following command:
