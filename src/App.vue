@@ -37,8 +37,8 @@
         <el-button color="#626aef">clear all history</el-button>
       </div>
     </el-aside>
-    <el-main>
-      <div style="display: flex; width: 100%">
+    <el-main style="overflow: hidden">
+      <div style="display: flex; width: 100%" ref="inputEl">
         <el-input
           placeholder="Type in sentences to search for papers."
           v-model="userInput"
@@ -53,20 +53,30 @@
           >Send
         </el-button>
       </div>
-      <div :key="isSend">
-        <QandA :question="userInput" :is-send="isSend" />
-      </div>
+      <el-scrollbar :max-height="height">
+        <div v-for="(ques, index) in questions" v-bind:key="index">
+          <QandA :question="ques" :answer="answers[index]" />
+        </div>
+        <div style="height: 3vh" />
+      </el-scrollbar>
     </el-main>
   </el-container>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { Search } from "@element-plus/icons-vue";
 import QandA from "@/components/QandA.vue";
 
+const inputEl = ref();
+const height = ref(0);
 const userInput = ref("");
 let isSend = ref(false);
+
+onMounted(() => {
+  height.value = window.innerHeight - inputEl.value?.clientHeight;
+  console.log(height.value);
+});
 
 const handleSend = () => {
   isSend.value = true;
