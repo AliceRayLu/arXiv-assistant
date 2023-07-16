@@ -34,7 +34,9 @@
           transform: translate(-50%);
         "
       >
-        <el-button color="#626aef">clear all history</el-button>
+        <el-button color="#626aef" @click="clearHistory">
+          clear all history
+        </el-button>
       </div>
     </el-aside>
     <el-main style="overflow: hidden">
@@ -53,7 +55,7 @@
           >Send
         </el-button>
       </div>
-      <el-scrollbar :max-height="height">
+      <el-scrollbar :max-height="height" :key="count">
         <div v-for="(ques, index) in questions" v-bind:key="index">
           <QandA :question="ques" :answer="answers[index]" />
         </div>
@@ -71,19 +73,38 @@ import QandA from "@/components/QandA.vue";
 const inputEl = ref();
 const height = ref(0);
 const userInput = ref("");
-let isSend = ref(false);
+let count = ref(0);
+let questions = [] as string[];
+let answers = [] as string[];
 
 onMounted(() => {
   height.value = window.innerHeight - inputEl.value?.clientHeight;
   console.log(height.value);
+  const tmpQ = localStorage.getItem("questions");
+  const tmpA = localStorage.getItem("answers");
+  questions = tmpQ ? JSON.parse(tmpQ) : ([] as string[]);
+  answers = tmpA ? JSON.parse(tmpA) : ([] as string[]);
 });
 
 const handleSend = () => {
-  isSend.value = true;
+  console.log("handle");
+  count.value++;
+  questions.splice(0, 0, userInput.value);
+  let answer = getAnswer(userInput.value);
+  answers.splice(0, 0, answer);
+  localStorage.setItem("questions", JSON.stringify(questions));
+  localStorage.setItem("answers", JSON.stringify(answers));
 };
 
-let questions = [] as string[];
-let answers = [] as string[];
+const getAnswer = (ques: string) => {
+  return "here is answer";
+};
+
+const clearHistory = () => {
+  localStorage.clear();
+  count.value = 0;
+  location.reload();
+};
 </script>
 
 <style>
