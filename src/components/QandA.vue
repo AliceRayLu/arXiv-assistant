@@ -1,6 +1,5 @@
 <template>
-  <el-row class="role">
-    <el-avatar :icon="UserFilled" size="large" />
+  <el-row class="role" style="display: flex; justify-content: flex-end">
     <el-card
       class="card"
       shadow="never"
@@ -12,6 +11,7 @@
     >
       <div>{{ props.question }}</div>
     </el-card>
+    <el-avatar :icon="UserFilled" size="large" />
   </el-row>
   <el-row class="role">
     <el-avatar size="large">Agent</el-avatar>
@@ -44,7 +44,7 @@ const props = defineProps({
 }
 .card {
   margin-left: 0.5vw;
-  /*background-color: ;*/
+  margin-right: 0.5vw;
 }
 /deep/.el-card {
   border: none;
