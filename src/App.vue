@@ -71,6 +71,7 @@
 import { onMounted, ref } from "vue";
 import { Search } from "@element-plus/icons-vue";
 import QandA from "@/components/QandA.vue";
+import { request } from "@/utils/request";
 
 const inputEl = ref();
 const height = ref(0);
@@ -100,6 +101,16 @@ const handleSend = () => {
 };
 
 const getAnswer = (ques: string) => {
+  request({
+    url: "/",
+    method: "GET",
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   return "here is answer";
 };
 

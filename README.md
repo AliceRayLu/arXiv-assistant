@@ -5,6 +5,17 @@ use LangChain to build LLM-based arXiv, easier search, easier use
 ## How to Use
 Run the following command:
 `npm run serve`
-to start the project locally
-> attention: the project is based on *Vicuna*, which can only be visited
-> via NJU campus network
+to start the project webpage locally
+> Attention: the project is based on arXiv database distributed
+> on NJU campus network
+
+
+Run the following command in the *interfaces* directory: 
+`uvicorn main:app --reload`
+
+## Project Info
+This project uses Vue+Typescript to build frontend, uses fastAPI to build backend.
+
+To run this project locally, you must install node.js and python interpreter.
+
+The virtual environment in *interfaces* requires fastapi and uvicorn.
