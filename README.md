@@ -14,8 +14,9 @@ Run the following command in the *interfaces* directory:
 `uvicorn main:app --reload`
 
 ## Project Info
-This project uses Vue+Typescript to build frontend, uses fastAPI to build backend.
+This project uses Vue+Typescript to build frontend, uses fastAPI+langchain to build backend.
 
 To run this project locally, you must install node.js and python interpreter.
 
-The virtual environment in *interfaces* requires fastapi and uvicorn.
+The virtual environment in *interfaces* requires fastapi, uvicorn, openai, langchain. 
+See *requirement.txt* for detail.
