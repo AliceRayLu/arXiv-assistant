@@ -59,7 +59,9 @@
       </div>
       <el-scrollbar :max-height="height" :key="count">
         <div v-for="(ques, index) in questions" v-bind:key="index">
-          <QandA :question="ques" :answer="answers[index]" />
+          <div :key="isLoading">
+            <QandA :question="ques" :answer="answers[index]" />
+          </div>
         </div>
         <div style="height: 3vh" />
       </el-scrollbar>
@@ -72,13 +74,23 @@ import { onMounted, ref } from "vue";
 import { Search } from "@element-plus/icons-vue";
 import QandA from "@/components/QandA.vue";
 import { request } from "@/utils/request";
+import { AIAnswer, PaperInfo } from "@/utils/paperInfo";
 
 const inputEl = ref();
 const height = ref(0);
 const userInput = ref("");
 let count = ref(0);
 let questions = [] as string[];
-let answers = [] as string[];
+let answers = [] as AIAnswer[];
+let tmp: AIAnswer = {
+  answer: "",
+  papers: [] as PaperInfo[],
+};
+const loadingAns: AIAnswer = {
+  answer: "loading...",
+  papers: [] as PaperInfo[],
+};
+let isLoading = ref(0);
 
 onMounted(() => {
   height.value = window.innerHeight - inputEl.value?.clientHeight;
@@ -86,32 +98,49 @@ onMounted(() => {
   const tmpQ = localStorage.getItem("questions");
   const tmpA = localStorage.getItem("answers");
   questions = tmpQ ? JSON.parse(tmpQ) : ([] as string[]);
-  answers = tmpA ? JSON.parse(tmpA) : ([] as string[]);
+  answers = tmpA ? JSON.parse(tmpA) : ([] as AIAnswer[]);
+  console.log("onmount");
+  console.log(answers);
 });
 
 const handleSend = () => {
   console.log("handle");
   count.value++;
   questions.splice(0, 0, userInput.value);
-  let answer = getAnswer(userInput.value);
-  answers.splice(0, 0, answer);
-  localStorage.setItem("questions", JSON.stringify(questions));
-  localStorage.setItem("answers", JSON.stringify(answers));
+  answers.splice(0, 0, loadingAns);
+  getAnswer(userInput.value);
   inputEl.value.clear();
 };
 
 const getAnswer = (ques: string) => {
   request({
-    url: "/",
+    url: `/search/${ques}`,
     method: "GET",
   })
     .then((res) => {
       console.log(res);
+      tmp.answer = res.data.answer;
+      tmp.papers = res.data.paperInfo.map((info: PaperInfo) => {
+        let i: PaperInfo = {
+          title: info.title,
+          author: info.author,
+          detail: info.detail,
+          pdf: info.pdf,
+          categories: info.categories,
+        };
+        return i;
+      });
+      console.log("this is tmp");
+      console.log(tmp);
+      answers.splice(0, 1, tmp);
+      console.log(answers);
+      localStorage.setItem("questions", JSON.stringify(questions));
+      localStorage.setItem("answers", JSON.stringify(answers));
+      isLoading.value++;
     })
     .catch((error) => {
       console.log(error);
     });
-  return "here is answer";
 };
 
 const clearHistory = () => {
