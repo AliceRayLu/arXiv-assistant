@@ -37,8 +37,6 @@ to start backend service
 
 ## Examples
 ### Example1
-User Message: what is nlp
 ![example1](https://github.com/AliceRayLu/arXiv-assistant/blob/main/src/assets/example2.png?raw=true)
 ### Example2
-User Message: give me some application of nlp
 ![example2](https://github.com/AliceRayLu/arXiv-assistant/blob/main/src/assets/example1.png?raw=true)
