@@ -19,3 +19,13 @@ def summarize(query:str,abstract:list):
         'query': query,
         'abstract':allAbs
     })
+
+def polish(query: str):
+    prompt = PromptTemplate(
+        input_variables=["question"],
+        template="i am currently trying to search papers in arXiv. \
+        Give me one sentence which can search the correct answer for {question}.\
+        Give me the sentence only."
+    )
+    chain = LLMChain(llm=llm,prompt=prompt)
+    return chain.run({'question':query})

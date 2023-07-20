@@ -2,7 +2,7 @@ from typing import Optional
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from search import searchPaper
-from chat import summarize
+from chat import summarize, polish
 
 app = FastAPI()
 app.add_middleware(
@@ -34,7 +34,7 @@ class paperInfo:
 
 @app.get("/search/{query}")
 def get_paper(query: str):
-    abstract, info = searchPaper(query)
+    abstract, info = searchPaper(polish(query))
     answer = summarize(query,abstract)
     papers = []
     for i in info:
