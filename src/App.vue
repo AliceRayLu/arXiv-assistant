@@ -87,7 +87,7 @@ let tmp: AIAnswer = {
   papers: [] as PaperInfo[],
 };
 const loadingAns: AIAnswer = {
-  answer: "loading...",
+  answer: "Loading...",
   papers: [] as PaperInfo[],
 };
 let isLoading = ref(0);

@@ -26,39 +26,41 @@
       }"
     >
       <div>{{ props.answer.answer }}</div>
-      <div style="margin-top: 3vh">
-        The answer is generated according to the following papers.
-      </div>
-      <div
-        v-for="info in props.answer.papers"
-        v-bind:key="info"
-        style="margin-top: 3vh"
-      >
-        <div>
-          <div class="label">Title</div>
-          <div class="paperInfo">{{ info.title }}</div>
+      <div v-if="props.answer.answer !== 'Loading...'">
+        <div style="margin-top: 3vh">
+          The answer is generated according to the following papers.
         </div>
-        <div>
-          <div class="label">Author</div>
-          <div v-if="info.author !== null" class="paperInfo">
-            {{ info.author }}
+        <div
+          v-for="info in props.answer.papers"
+          v-bind:key="info"
+          style="margin-top: 3vh"
+        >
+          <div>
+            <div class="label">Title</div>
+            <div class="paperInfo">{{ info.title }}</div>
           </div>
-          <div v-else class="paperInfo">unknown</div>
-        </div>
-        <div>
-          <div class="label">Source</div>
-          <div v-if="info.detail !== 'unknown'" class="paperInfo">
-            Visit <a ref="{{info.detail}}">{{ info.detail }}</a> to see
-            details.<br />
-            Visit <a ref="{{info.pdf}}">{{ info.pdf }}</a> to see the paper.
+          <div>
+            <div class="label">Author</div>
+            <div v-if="info.author !== null" class="paperInfo">
+              {{ info.author }}
+            </div>
+            <div v-else class="paperInfo">unknown</div>
           </div>
-          <div v-else class="paperInfo">
-            404-Can't find the paper's source page
+          <div>
+            <div class="label">Source</div>
+            <div v-if="info.detail !== 'unknown'" class="paperInfo">
+              Visit <a ref="{{info.detail}}">{{ info.detail }}</a> to see
+              details.<br />
+              Visit <a ref="{{info.pdf}}">{{ info.pdf }}</a> to see the paper.
+            </div>
+            <div v-else class="paperInfo">
+              404-Can't find the paper's source page
+            </div>
           </div>
-        </div>
-        <div>
-          <div class="label">Categories</div>
-          <div class="paperInfo">{{ info.categories }}</div>
+          <div>
+            <div class="label">Categories</div>
+            <div class="paperInfo">{{ info.categories }}</div>
+          </div>
         </div>
       </div>
     </el-card>
@@ -93,7 +95,7 @@ const props = defineProps<{
 .paperInfo {
   display: inline-flex;
   max-width: 55vw;
-  font-family: "Roboto Light", "Ubuntu Light", "Ubuntu", monospace;
+  font-family: Calibri;
 }
 /deep/.el-card {
   border: none;
