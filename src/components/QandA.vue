@@ -11,7 +11,7 @@
     >
       <div>{{ props.question }}</div>
     </el-card>
-    <el-avatar :icon="UserFilled" size="large" />
+    <el-avatar :icon="UserFilled" size="large" style="margin-right: 1vw" />
   </el-row>
   <el-row class="role">
     <el-avatar size="large">Agent</el-avatar>
@@ -34,19 +34,32 @@
         v-bind:key="info"
         style="margin-top: 3vh"
       >
-        <!--        <el-form label-width="10vw" size="large" :inline="true">-->
-        <!--          <el-form-item label="Title">{{ info.title }}</el-form-item>-->
-        <!--        </el-form>-->
-        <div>title:{{ info.title }}</div>
-        <div v-if="info.author !== null">author:{{ info.author }}</div>
-        <div v-else>author: unknown</div>
-        <div v-if="info.detail !== 'unknown'">
-          Visit <a ref="{{info.detail}}">{{ info.detail }}</a> to see
-          details.<br />
-          Visit <a ref="{{info.pdf}}">{{ info.pdf }}</a> to see the paper.
+        <div>
+          <div class="label">Title</div>
+          <div class="paperInfo">{{ info.title }}</div>
         </div>
-        <div v-else>404-Can't find the paper's source page</div>
-        <div>categories:{{ info.categories }}</div>
+        <div>
+          <div class="label">Author</div>
+          <div v-if="info.author !== null" class="paperInfo">
+            {{ info.author }}
+          </div>
+          <div v-else class="paperInfo">unknown</div>
+        </div>
+        <div>
+          <div class="label">Source</div>
+          <div v-if="info.detail !== 'unknown'" class="paperInfo">
+            Visit <a ref="{{info.detail}}">{{ info.detail }}</a> to see
+            details.<br />
+            Visit <a ref="{{info.pdf}}">{{ info.pdf }}</a> to see the paper.
+          </div>
+          <div v-else class="paperInfo">
+            404-Can't find the paper's source page
+          </div>
+        </div>
+        <div>
+          <div class="label">Categories</div>
+          <div class="paperInfo">{{ info.categories }}</div>
+        </div>
       </div>
     </el-card>
   </el-row>
@@ -69,6 +82,18 @@ const props = defineProps<{
 .card {
   margin-left: 0.5vw;
   margin-right: 0.5vw;
+}
+.label {
+  font-family: "Bell MT";
+  font-weight: 1000;
+  color: #626aef;
+  width: 10vw;
+  display: inline-flex;
+}
+.paperInfo {
+  display: inline-flex;
+  max-width: 55vw;
+  font-family: "Roboto Light", "Ubuntu Light", "Ubuntu", monospace;
 }
 /deep/.el-card {
   border: none;

@@ -6,12 +6,14 @@ use LangChain to build LLM-based arXiv, easier search, easier use
 Run the following command:
 `npm run serve`
 to start the project webpage locally
-> Attention: the project is based on arXiv database distributed
-> on NJU campus network
 
 
 Run the following command in the *interfaces* directory: 
 `uvicorn main:app --reload`
+to start backend service
+> Attention: This project is based on arXiv database distributed
+> on NJU campus network. You also need to fill in the openAI api key 
+> to use LLM service.
 
 ## Project Info
 This project uses Vue+Typescript to build frontend, uses fastAPI+langchain to build backend.
