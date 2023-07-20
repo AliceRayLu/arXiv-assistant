@@ -17,7 +17,7 @@
       <div class="info">
         <ul style="line-height: 3vh">
           <li>Type in what you want to search</li>
-          <li>Click the send button</li>
+          <li>Click the send button or press ENTER</li>
           <li>The answer and papers' links will be shown on screen</li>
         </ul>
       </div>
