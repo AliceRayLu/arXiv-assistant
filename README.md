@@ -35,3 +35,4 @@ to start backend service
 > Attention: You must fill in the openAI api key in chat.py
 > to use LLM service.
 
+## Examples

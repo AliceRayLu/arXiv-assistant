@@ -13,7 +13,7 @@
           Using Large Language Model(LLM) to better search papers in arXiv.
         </text>
       </div>
-      <div><text class="title">How to use</text></div>
+      <div><text class="title">💡 How to use</text></div>
       <div class="info">
         <ul style="line-height: 3vh">
           <li>Type in what you want to search</li>
@@ -21,7 +21,7 @@
           <li>The answer and papers' links will be shown on screen</li>
         </ul>
       </div>
-      <div><text class="title">Note</text></div>
+      <div><text class="title">🔔 Note</text></div>
       <div class="info" style="margin: 2vh 1vw 2vh 1vw; line-height: 3vh">
         The searching history will be stored in your browser.<br />
         Click the button below to clear all history.

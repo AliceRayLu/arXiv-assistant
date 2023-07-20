@@ -11,7 +11,8 @@ llm = OpenAI(temperature=0.9)
 def summarize(query:str,abstract:list):
     prompt = PromptTemplate(
         input_variables=["query","abstract"],
-        template="Answer the question {query} according to the text given below: {abstract}"
+        template="Answer the question {query} according to the text given below: {abstract}.\
+            Give me the answer only."
     )
     chain = LLMChain(llm=llm,prompt=prompt)
     allAbs = " ".join(abstract)

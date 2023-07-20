@@ -1,4 +1,3 @@
-from typing import Optional
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from search import searchPaper
