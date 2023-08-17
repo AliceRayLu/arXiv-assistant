@@ -47,7 +47,7 @@ to start backend service
 2. extract key words and discipline of the polished sentence
 3. search the database through Milvus
 4. iteration trial: calculate the similarity between key words and papers' abstract sentence, 
-choose the largest paper's title to search similar papaer
+choose the largest paper's title to search similar paper. Stop when no better similar paper could be searched.
 > iteration trial costs too much time, so give up iteration in the final edition
 5. ask LLM to summarize the abstracts
 6. return the result
