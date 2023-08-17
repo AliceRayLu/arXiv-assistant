@@ -32,6 +32,7 @@ Run `npm run serve` to start the project webpage locally.
 Run the following command in the *interfaces* directory: 
 `uvicorn main:app --reload`
 to start backend service
+(Don't forget to activate the virtual python environment first)
 > Attention: You must fill in the openAI api key in chat.py
 > to use LLM service.
 
@@ -40,3 +41,13 @@ to start backend service
 ![example1](https://github.com/AliceRayLu/arXiv-assistant/blob/main/src/assets/example2.png?raw=true)
 ### Example2
 ![example2](https://github.com/AliceRayLu/arXiv-assistant/blob/main/src/assets/example1.png?raw=true)
+
+## LLM Usage
+1. ask LLM to reorganize user input
+2. extract key words and discipline of the polished sentence
+3. search the database through Milvus
+4. iteration trial: calculate the similarity between key words and papers' abstract sentence, 
+choose the largest paper's title to search similar papaer
+> iteration trial costs too much time, so give up iteration in the final edition
+5. ask LLM to summarize the abstracts
+6. return the result

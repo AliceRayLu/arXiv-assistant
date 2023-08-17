@@ -2,7 +2,7 @@ from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 import os
-os.environ["OPENAI_API_KEY"] = ""
+os.environ["OPENAI_API_KEY"] = "..."
 llm = OpenAI(temperature=0.9)
 
 # prompt = PromptTemplate.from_template("What is a good name for a company that makes {product}?")
@@ -29,4 +29,17 @@ def polish(query: str):
         Give me the sentence only."
     )
     chain = LLMChain(llm=llm,prompt=prompt)
-    return chain.run({'question':query})
+    polished = chain.run({'question':query})
+    key_prompt = PromptTemplate(
+        input_variables=["sentence"],
+        template = "Give me the key words of {sentence}. Give me the words only."
+    )
+    key_words = LLMChain(llm=llm,prompt = key_prompt).run({'sentence':polished})
+
+    discipline_prompt = PromptTemplate(
+        input_variables=["sentence"],
+        template = "Give me the disciplines of the papers wanted by asking {sentence}.\
+              Give me the names of disciplines only."
+    )
+    discipline = LLMChain(llm=llm,prompt = discipline_prompt).run({'sentence':polished})
+    return key_words+discipline
